@@ -3,9 +3,11 @@
 
 // 1. Require your node modules
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const db = mongoose.connection;
 // 2. Require your model (and possibly your extra data source);
 const Vampire = requre('./vampire');
+const VampireData = require('./populateVampires');
+
 // 3. Connect your database and collection name
 mongoose.connect('mongodb://localhost:27017/article');
 
@@ -27,9 +29,22 @@ db.on('connected', () => {
 /////////////////////////////////////////////////
 // INSERT USING MONGOOSE
 // ### Add the vampire data that we gave you
+Vampire.collection.insertMany(VampireData,(err, data) => {
+    console.log("added provided vampire data")
+    mongoose.connection.close();
+  });
 
 // ### Add some new vampire data
-
+Vampire.create({
+	name:'Jessamyn',
+	hair_color: 'red',
+	eye_color:'blue',
+	dob:new Date(1827, 1, 27, 1, 17),
+	loves: ['italian greyhounds', 'snuggles'],
+	location: 'Austin, Texas, US',
+	gender: 'f',
+	victims:3,
+});
 /////////////////////////////////////////////////
 // ## QUERYING
 /////////////////////////////////////////////////
