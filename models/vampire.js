@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 //then
 const vampireSchema = new Schema({
 name: {type: String, required: true, unique: true},
-hair_color:: {type: String, default: 'blonde'},
+hair_color: {type: String, default: 'blonde'},
 dob: {type: Date},
 loves: [{type: String, required: true}],
 location: {type: String, required: true},

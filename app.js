@@ -3,9 +3,9 @@
 
 // 1. Require your node modules
 const mongoose = require('mongoose');
-const db = mongoose.connection;
+const app = mongoose.connection;
 // 2. Require your model (and possibly your extra data source);
-const Vampire = requre('./vampire');
+const Vampire = require('./models/vampire');
 const VampireData = require('./populateVampires');
 
 // 3. Connect your database and collection name
@@ -14,11 +14,11 @@ mongoose.connect('mongodb://localhost:27017/article');
 
 
 // 4. Open your mongoose connection
-db.on('error', (err) => {
+app.on('error', (err) => {
   console.log(err, ' this is the error message')
 });
 
-db.on('connected', () => {
+app.on('connected', () => {
   console.log('mongoose is connected to mongodb')
 });
 /////////////////////////////////////////////////
@@ -91,24 +91,40 @@ Vampire.find( {title: { $exists: true } },
 );
 
 // do not have a victims property
-
+Vampire.find( {victims: { $exists: false } },
+	(err, response) => {
+		console.log(response);
+	}
+);
 
 // have a title AND no victims
-
+Vampire.find( {title: { $exists: true }, victims: { $exists: false } },
+	(err, response) => {
+		console.log(response);
+	}
+);
 
 // have victims AND the victims they have are greater than 1000
+Vampire.find( {victims: { $exists: true, $gt: 1000 } },
+	(err, response) => {
+		console.log(response);
+	}
+);
 
 
 /////////////////////////////////////////////////
 // ### Select with OR
 
-// have a title property
+// are from New York, New York, US or New Orleans, Louisiana, US
 
-// do not have a victims property
 
-// have a title AND no victims
+// love brooding or being tragic
 
-// have victims AND the victims they have are greater than 1000
+
+// have more than 1000 victims or love marshmallows
+
+
+// have red hair or green eyes
 
 
 /////////////////////////////////////////////////
