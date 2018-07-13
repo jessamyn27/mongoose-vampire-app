@@ -1,6 +1,6 @@
 
-// THIS IS = to your db.js file
-
+// THIS IS = to your db.js file also known at the vampire files
+console.log("hello app");
 // 1. Require your node modules
 const mongoose = require('mongoose');
 const db = mongoose.connection;
@@ -9,7 +9,7 @@ const Vampire = require('./models/vampire');
 const VampireData = require('./populateVampires');
 
 // 3. Connect your database and collection name
-mongoose.connect('mongodb://localhost:27017/article');
+mongoose.connect('mongodb://localhost:27017/populateVampires');
 
 // 4. Open your mongoose connection
 db.on('error', (err) => {
@@ -27,33 +27,33 @@ db.on('connected', () => {
 /////////////////////////////////////////////////
 // INSERT USING MONGOOSE
 // ### Add the vampire data that we gave you
-Vampire.collection.insertMany(VampireData,(err, data) => {
-    console.log("added provided vampire data")
-    mongoose.connection.close();
-  });
+// Vampire.collection.insertMany(VampireData,(err, data) => {
+//     console.log("added provided vampire data")
+//     mongoose.connection.close();
+//   });
 
 // ### Add some new vampire data
-Vampire.create({
-	name:'Jessamyn',
-	hair_color: 'red',
-	eye_color:'blue',
-	dob:new Date(1827, 1, 27, 1, 17),
-	loves: ['italian greyhounds', 'snuggles'],
-	location: 'Austin, Texas, US',
-	gender: 'f',
-	victims:3,
-});
+// Vampire.create({
+// 	name:'Timmer-son',
+// 	hair_color: 'blonde',
+// 	eye_color:'blue',
+// 	dob:new Date(1827, 1, 27, 1, 17),
+// 	loves: ['pickles', 'candies'],
+// 	location: 'Austin, Texas, US',
+// 	gender: 'm',
+// 	victims:300,
+// });
 /////////////////////////////////////////////////
 // ## QUERYING
 /////////////////////////////////////////////////
 // ### Select by comparison
 
-// // Find all the vampires that that are females
-// Vampire.find( {gender: { $eq: 'f' } },
-// 	(err, response) => {
-// 		console.log(response);
-// 	}
-// );
+// Find all the vampires that that are females
+Vampire.find( {gender: { $eq: 'f' } },
+	(err, response) => {
+		console.log(response);
+	}
+);
 //
 // // have greater than 500 victims
 // Vampire.find( {victims: { $gt: 500 } },
@@ -135,11 +135,11 @@ Vampire.create({
 // );
 
 // have red hair or green eyes
-Vampire.find( { $or: [ { hair_color: { $eq: 'red' } }, { eye_color: { $eq: 'green' } } ] },
-	(err,response) => {
-		console.log(response);
-	}
-);
+// Vampire.find( { $or: [ { hair_color: { $eq: 'red' } }, { eye_color: { $eq: 'green' } } ] },
+// 	(err,response) => {
+// 		console.log(response);
+// 	}
+// );
 
 /////////////////////////////////////////////////
 //### Select objects that match one of several values

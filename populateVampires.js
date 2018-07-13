@@ -1,3 +1,4 @@
+// this is my collection
 const vampireData = [
   {
     name: 'Count Chocula',
@@ -136,4 +137,4 @@ const vampireData = [
     title: 'Osiris of Sewer Rats'
   }
 ]
-module.exports = vampireData; 
+module.exports = vampireData;
