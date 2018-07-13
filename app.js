@@ -50,6 +50,36 @@ Vampire.create({
 /////////////////////////////////////////////////
 // ### Select by comparison
 
+// Find all the vampires that that are females
+Vampire.find( {gender: { $eq: 'f' } },
+	(err, response) => {
+		console.log(response);
+	}
+);
+
+// have greater than 500 victims
+Vampire.find( {victims: { $gt: 500 } },
+	(err, response) => {
+		console.log(response);
+	}
+);
+
+// have fewer than or equal to 150 victims
+Vampire.find( {victims: { $lte: 150 } },
+	(err, response) => {
+		console.log(response);
+	}
+);
+
+// have a victim count is not equal to 210234
+Vampire.find( {victims: { $ne: 210234 } } );
+
+// have greater than 150 AND fewer than 500 victims
+Vampire.find( {victims: { $gt: 150, $lt: 500 } },
+	(err, response) => {
+		console.log(response);
+	}
+);
 /////////////////////////////////////////////////
 // ### Select by exists or does not exist
 
