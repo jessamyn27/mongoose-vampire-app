@@ -83,8 +83,33 @@ Vampire.find( {victims: { $gt: 150, $lt: 500 } },
 /////////////////////////////////////////////////
 // ### Select by exists or does not exist
 
+// have a title property
+Vampire.find( {title: { $exists: true } },
+	(err, response) => {
+		console.log(response);
+	}
+);
+
+// do not have a victims property
+
+
+// have a title AND no victims
+
+
+// have victims AND the victims they have are greater than 1000
+
+
 /////////////////////////////////////////////////
 // ### Select with OR
+
+// have a title property
+
+// do not have a victims property
+
+// have a title AND no victims
+
+// have victims AND the victims they have are greater than 1000
+
 
 /////////////////////////////////////////////////
 //### Select objects that match one of several values
